@@ -7,8 +7,12 @@ using UnityEngine.Advertisements;
 
 public class CubesController : MonoBehaviour
 {
-
+#if UNITY_IOS
+    public string gameId="3987840";
+#else
     public string gameId="3987841";
+#endif
+
     public Button right,left,up,down,rotate,rotateZ,rotateY;
     public Button rotateXCoord,rotateZCoord,rotateYCoord;
 
