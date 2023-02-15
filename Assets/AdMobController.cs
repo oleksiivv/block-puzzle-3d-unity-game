@@ -8,13 +8,27 @@ public class AdMobController : MonoBehaviour
     private InterstitialAd intersitional;
     private BannerView banner;
 
+#if UNITY_IOS
+    public string appId="ca-app-pub-4962234576866611~6205735524";
+    //public string intersitionalId="ca-app-pub-4962234576866611/9953408843";
+
+    public string bannerId="ca-app-pub-4962234576866611/3224897703";
+#else
     public string appId="ca-app-pub-4962234576866611~9504973244";
     //public string intersitionalId="ca-app-pub-4962234576866611/1826596101";
 
     public string bannerId="ca-app-pub-4962234576866611/8119561771";
-    
+#endif
+
     void Start(){
-        MobileAds.Initialize(appId);
+        RequestConfiguration requestConfiguration =
+            new RequestConfiguration.Builder()
+            .SetSameAppKeyEnabled(true).build();
+        MobileAds.SetRequestConfiguration(requestConfiguration);
+
+        // Initialize the Google Mobile Ads SDK.
+        MobileAds.Initialize(initStatus => { });
+
         RequestBannerAd();
         //RequestConfigurationAd();
         

@@ -7,10 +7,23 @@ using System;
 public class AdmobMainScene : MonoBehaviour
 {
      private InterstitialAd intersitional;
+#if UNITY_IOS
+    private string appId="ca-app-pub-4962234576866611~6205735524";
+    private string intersitionalId="ca-app-pub-4962234576866611/9953408843";
+#else
     private string appId="ca-app-pub-4962234576866611~2596048994";
     private string intersitionalId="ca-app-pub-4962234576866611/3893673397";
+#endif
+
     void Start(){
-        MobileAds.Initialize(appId);
+        RequestConfiguration requestConfiguration =
+            new RequestConfiguration.Builder()
+            .SetSameAppKeyEnabled(true).build();
+        MobileAds.SetRequestConfiguration(requestConfiguration);
+
+        // Initialize the Google Mobile Ads SDK.
+        MobileAds.Initialize(initStatus => { });
+        
         RequestConfigurationAd();
         
     }
