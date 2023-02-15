@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta id="Viewport" name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+    <title>Block 3D Puzzle</title>
+    <link rel="shortcut icon" href="TemplateData/favicon.ico">
+    <link rel="stylesheet" href="TemplateData/style.css">
+    <script src="TemplateData/UnityProgress.js"></script>
+    <script src="Build/UnityLoader.js"></script>
+    <script>
+      var gameInstance = UnityLoader.instantiate("gameContainer", "Build/Block3d_WebGl.json", {onProgress: UnityProgress});
+    </script>
+  </head>
+  <body>
+    <center>
+    <div class="webgl-content">
+      <div id="gameContainer" style="width: 370px !important; height: 98vh !important">
+      </div>
+      
+    </div>
+    </center>
+  </body>
+</html>

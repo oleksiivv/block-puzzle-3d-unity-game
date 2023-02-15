@@ -1,0 +1,13 @@
+{
+"companyName": "Vertex Studio Games",
+"productName": "Block 3D",
+"dataUrl": "Block3d_WebGl.data.unityweb",
+"wasmCodeUrl": "Block3d_WebGl.wasm.code.unityweb",
+"wasmFrameworkUrl": "Block3d_WebGl.wasm.framework.unityweb",
+"TOTAL_MEMORY": 268435456,
+"graphicsAPI": ["WebGL 2.0", "WebGL 1.0"],
+"webglContextAttributes": {"preserveDrawingBuffer": false},
+"splashScreenStyle": "Dark",
+"backgroundColor": "#000000",
+"cacheControl": {"default": "must-revalidate"}
+}
