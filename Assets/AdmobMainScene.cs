@@ -22,9 +22,9 @@ public class AdmobMainScene : MonoBehaviour
         MobileAds.SetRequestConfiguration(requestConfiguration);
 
         // Initialize the Google Mobile Ads SDK.
-        MobileAds.Initialize(initStatus => { });
-        
-        RequestConfigurationAd();
+        MobileAds.Initialize(initStatus => {
+            LoadLoadInterstitialAd();
+        });
         
     }
 
@@ -32,64 +32,56 @@ public class AdmobMainScene : MonoBehaviour
          return new AdRequest.Builder().Build();
      }
 
-
-      void RequestConfigurationAd(){
-          intersitional=new InterstitialAd(intersitionalId);
-          AdRequest request=AdRequestBuild();
-          intersitional.LoadAd(request);
-
-          intersitional.OnAdLoaded+=this.HandleOnAdLoaded;
-          intersitional.OnAdOpening+=this.HandleOnAdOpening;
-          intersitional.OnAdClosed+=this.HandleOnAdClosed;
-
-      }
-
-
       public bool showIntersitionalAd(){
-          if(intersitional.IsLoaded()){
-              intersitional.Show();
-
-              return true;
-          }
-
-          return false;
+          return showIntersitionalGoogleAd();
       }
 
-      private void OnDestroy(){
-          DestroyIntersitional();
-
-          intersitional.OnAdLoaded-=this.HandleOnAdLoaded;
-          intersitional.OnAdOpening-=this.HandleOnAdOpening;
-          intersitional.OnAdClosed-=this.HandleOnAdClosed;
-
-      }
-
-      private void HandleOnAdClosed(object sender, EventArgs e)
-      {
-          intersitional.OnAdLoaded-=this.HandleOnAdLoaded;
-          intersitional.OnAdOpening-=this.HandleOnAdOpening;
-          intersitional.OnAdClosed-=this.HandleOnAdClosed;
-
-            RequestConfigurationAd();
-
-        
-      }
-
-      private void HandleOnAdOpening(object sender, EventArgs e)
+      private InterstitialAd _interstitialAd;
+    
+    public void LoadLoadInterstitialAd()
     {
-        
+        // Clean up the old ad before loading a new one.
+        if (_interstitialAd != null)
+        {
+                _interstitialAd.Destroy();
+                _interstitialAd = null;
+        }
+
+        Debug.Log("Loading the interstitial ad.");
+
+        // create our request used to load the ad.
+        var adRequest = new AdRequest();
+
+        // send the request to load the ad.
+        InterstitialAd.Load(intersitionalId, adRequest,
+            (InterstitialAd ad, LoadAdError error) =>
+            {
+                // if error is not null, the load request failed.
+                if (error != null || ad == null)
+                {
+                    Debug.LogError("interstitial ad failed to load an ad " +
+                                    "with error : " + error);
+                    return;
+                }
+
+                Debug.Log("Interstitial ad loaded with response : "
+                            + ad.GetResponseInfo());
+
+                _interstitialAd = ad;
+            });
     }
 
-    private void HandleOnAdLoaded(object sender, EventArgs e)
-    {
-        
-    }
 
- 
+      public bool showIntersitionalGoogleAd(){
+        if (_interstitialAd != null && _interstitialAd.CanShowAd())
+        {
+            _interstitialAd.Show();
 
-     public void DestroyIntersitional(){
-         intersitional.Destroy();
-     }
-
-
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+      }
 }
