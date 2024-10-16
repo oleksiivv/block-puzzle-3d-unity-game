@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44391277, g: 0.4931553, b: 0.57220834, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -527,7 +527,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.000010713, y: -85}
+  m_AnchoredPosition: {x: -0.000010713, y: -156}
   m_SizeDelta: {x: 198.5, y: 181}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &364597135
@@ -1662,6 +1662,7 @@ GameObject:
   - component: {fileID: 1495744763}
   - component: {fileID: 1495744762}
   - component: {fileID: 1495744764}
+  - component: {fileID: 1495744765}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1875,6 +1876,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   appId: ca-app-pub-4962234576866611~2596048994
   bannerId: ca-app-pub-4962234576866611/4648137892
+--- !u!114 &1495744765
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1495744757}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2af61b664e7024bbfbb507a348977c3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1568363058
 GameObject:
   m_ObjectHideFlags: 0
