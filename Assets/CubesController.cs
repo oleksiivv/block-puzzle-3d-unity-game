@@ -7,12 +7,6 @@ using UnityEngine.Advertisements;
 
 public class CubesController : MonoBehaviour
 {
-#if UNITY_IOS
-    public string gameId="3987840";
-#else
-    public string gameId="3987841";
-#endif
-
     public Button right,left,up,down,rotate,rotateZ,rotateY;
     public Button rotateXCoord,rotateZCoord,rotateYCoord;
 
@@ -31,7 +25,6 @@ public class CubesController : MonoBehaviour
     public AdmobMainScene admob;
 
     void Start(){
-        Advertisement.Initialize(gameId,false);
         startedHi=PlayerPrefs.GetInt("hi");
         StartCoroutine(scoreInc());
     }
@@ -109,14 +102,9 @@ bool addShowed=false;
 
         if(speed==0 && !addShowed){
 
-             if(Advertisement.IsReady("video")){
-                  Advertisement.Show("video");
-                  addShowed=true;
-               }
-               else{
-                   admob.showIntersitionalAd();
-                   addShowed=true;
-               }
+             admob.showIntersitionalAd();
+             addShowed=true;
+
 
         }
     }
@@ -124,12 +112,7 @@ bool addShowed=false;
     public GameObject pauseBg;
     public void pause(){
 
-         if(Advertisement.IsReady("video")){
-              Advertisement.Show("video");
-         }
-          else{
-                   admob.showIntersitionalAd();
-               }
+         admob.showIntersitionalAd();
 
         Time.timeScale=0;
 
